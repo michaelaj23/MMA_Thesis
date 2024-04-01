@@ -20296,7 +20296,7 @@ women_strawweight
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[22]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">round_average</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="s1">&#39;SELECT * FROM frame&#39;</span><span class="p">,</span> <span class="n">connection</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">round_average</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="s1">&#39;SELECT * FROM round_average&#39;</span><span class="p">,</span> <span class="n">connection</span><span class="p">)</span>
 <span class="n">round_average</span>
 </pre></div>
 
@@ -24276,7 +24276,7 @@ class="
 
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>&lt;seaborn.axisgrid.PairGrid at 0x7f8b8016b5e0&gt;</pre>
+<pre>&lt;seaborn.axisgrid.PairGrid at 0x7f9bf19746d0&gt;</pre>
 </div>
 
 </div>
@@ -26214,7 +26214,7 @@ class="
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>/var/folders/_6/_1qflrx12_j4kc3ssfs46ldw0000gn/T/ipykernel_2074/3902886768.py:2: FutureWarning: Indexing with multiple keys (implicitly converted to a tuple of keys) will be deprecated, use a list instead.
+<pre>/var/folders/_6/_1qflrx12_j4kc3ssfs46ldw0000gn/T/ipykernel_2218/3902886768.py:2: FutureWarning: Indexing with multiple keys (implicitly converted to a tuple of keys) will be deprecated, use a list instead.
   correlation_by_stance = records.groupby(&#39;STANCE&#39;)[&#39;Win_%&#39;, &#39;Total_Fights&#39;].corr().iloc[0::2,-1].reset_index()
 </pre>
 </div>

@@ -14836,7 +14836,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Import data</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;/Users/michaelbyrd/Desktop/MIS556/master_refined.csv&quot;</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;/Users/michaelbyrd/Desktop/MIS556/master_df2.csv&quot;</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -24271,6 +24271,10 @@ pd.set_option('display.max_rows', 20)
 
 <span class="n">fighter_dim</span><span class="p">[</span><span class="s1">&#39;STANCE&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">fighter_dim</span><span class="p">[</span><span class="s1">&#39;STANCE&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;Sideways&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
 
+<span class="c1"># Create a new column &#39;EITHER_CHAMP&#39; based on the condition</span>
+<span class="n">fighter_dim</span><span class="p">[</span><span class="s1">&#39;EITHER_CHAMP&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">fighter_dim</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="s1">&#39;Yes&#39;</span> <span class="k">if</span> <span class="n">x</span><span class="p">[</span><span class="s1">&#39;EVER_CHAMPION&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Yes&#39;</span> <span class="ow">or</span> <span class="n">x</span><span class="p">[</span><span class="s1">&#39;EVER_INTERIM&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Yes&#39;</span> <span class="k">else</span> <span class="s1">&#39;No&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+
 <span class="n">fighter_dim</span>
 </pre></div>
 
@@ -24317,6 +24321,7 @@ pd.set_option('display.max_rows', 20)
       <th>EVER_CHAMPION</th>
       <th>EVER_INTERIM</th>
       <th>EVER_CHALLENGER</th>
+      <th>EITHER_CHAMP</th>
     </tr>
   </thead>
   <tbody>
@@ -24324,6 +24329,7 @@ pd.set_option('display.max_rows', 20)
       <th>0</th>
       <td>Asu Almabayev</td>
       <td>NaN</td>
+      <td>No</td>
       <td>No</td>
       <td>No</td>
       <td>No</td>
@@ -24335,11 +24341,13 @@ pd.set_option('display.max_rows', 20)
       <td>No</td>
       <td>No</td>
       <td>No</td>
+      <td>No</td>
     </tr>
     <tr>
       <th>6</th>
       <td>Curtis Blaydes</td>
       <td>Orthodox</td>
+      <td>No</td>
       <td>No</td>
       <td>No</td>
       <td>No</td>
@@ -24351,6 +24359,7 @@ pd.set_option('display.max_rows', 20)
       <td>No</td>
       <td>No</td>
       <td>No</td>
+      <td>No</td>
     </tr>
     <tr>
       <th>10</th>
@@ -24359,9 +24368,11 @@ pd.set_option('display.max_rows', 20)
       <td>No</td>
       <td>No</td>
       <td>No</td>
+      <td>No</td>
     </tr>
     <tr>
       <th>...</th>
+      <td>...</td>
       <td>...</td>
       <td>...</td>
       <td>...</td>
@@ -24375,11 +24386,13 @@ pd.set_option('display.max_rows', 20)
       <td>No</td>
       <td>No</td>
       <td>No</td>
+      <td>No</td>
     </tr>
     <tr>
       <th>34568</th>
       <td>Marcelo Aguiar</td>
       <td>Orthodox</td>
+      <td>No</td>
       <td>No</td>
       <td>No</td>
       <td>No</td>
@@ -24391,11 +24404,13 @@ pd.set_option('display.max_rows', 20)
       <td>No</td>
       <td>No</td>
       <td>No</td>
+      <td>No</td>
     </tr>
     <tr>
       <th>34578</th>
       <td>David Dodd</td>
       <td>Orthodox</td>
+      <td>No</td>
       <td>No</td>
       <td>No</td>
       <td>No</td>
@@ -24407,10 +24422,11 @@ pd.set_option('display.max_rows', 20)
       <td>No</td>
       <td>No</td>
       <td>No</td>
+      <td>No</td>
     </tr>
   </tbody>
 </table>
-<p>2317 rows × 5 columns</p>
+<p>2317 rows × 6 columns</p>
 </div>
 </div>
 
@@ -24476,6 +24492,7 @@ pd.set_option('display.max_rows', 20)
       <th>EVER_CHAMPION</th>
       <th>EVER_INTERIM</th>
       <th>EVER_CHALLENGER</th>
+      <th>EITHER_CHAMP</th>
     </tr>
   </thead>
   <tbody>
@@ -24564,6 +24581,7 @@ pd.set_option('display.max_rows', 20)
       <th>EVER_CHAMPION</th>
       <th>EVER_INTERIM</th>
       <th>EVER_CHALLENGER</th>
+      <th>EITHER_CHAMP</th>
       <th>Buyrate</th>
       <th>Avg_Buyrate_Per_Event</th>
       <th>PPV_Fights</th>
@@ -24574,6 +24592,7 @@ pd.set_option('display.max_rows', 20)
       <th>0</th>
       <td>Asu Almabayev</td>
       <td>NaN</td>
+      <td>No</td>
       <td>No</td>
       <td>No</td>
       <td>No</td>
@@ -24588,6 +24607,7 @@ pd.set_option('display.max_rows', 20)
       <td>No</td>
       <td>No</td>
       <td>No</td>
+      <td>No</td>
       <td>1100000.0</td>
       <td>550000.0</td>
       <td>2.0</td>
@@ -24596,6 +24616,7 @@ pd.set_option('display.max_rows', 20)
       <th>2</th>
       <td>Curtis Blaydes</td>
       <td>Orthodox</td>
+      <td>No</td>
       <td>No</td>
       <td>No</td>
       <td>No</td>
@@ -24610,6 +24631,7 @@ pd.set_option('display.max_rows', 20)
       <td>No</td>
       <td>No</td>
       <td>No</td>
+      <td>No</td>
       <td>0.0</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -24618,6 +24640,7 @@ pd.set_option('display.max_rows', 20)
       <th>4</th>
       <td>Benoit Saint Denis</td>
       <td>Southpaw</td>
+      <td>No</td>
       <td>No</td>
       <td>No</td>
       <td>No</td>
@@ -24635,11 +24658,13 @@ pd.set_option('display.max_rows', 20)
       <td>...</td>
       <td>...</td>
       <td>...</td>
+      <td>...</td>
     </tr>
     <tr>
       <th>2312</th>
       <td>Joao Roque</td>
       <td>Orthodox</td>
+      <td>No</td>
       <td>No</td>
       <td>No</td>
       <td>No</td>
@@ -24654,6 +24679,7 @@ pd.set_option('display.max_rows', 20)
       <td>No</td>
       <td>No</td>
       <td>No</td>
+      <td>No</td>
       <td>0.0</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -24662,6 +24688,7 @@ pd.set_option('display.max_rows', 20)
       <th>2314</th>
       <td>Adrian Serrano</td>
       <td>NaN</td>
+      <td>No</td>
       <td>No</td>
       <td>No</td>
       <td>No</td>
@@ -24676,6 +24703,7 @@ pd.set_option('display.max_rows', 20)
       <td>No</td>
       <td>No</td>
       <td>No</td>
+      <td>No</td>
       <td>0.0</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -24687,13 +24715,14 @@ pd.set_option('display.max_rows', 20)
       <td>No</td>
       <td>No</td>
       <td>No</td>
+      <td>No</td>
       <td>0.0</td>
       <td>NaN</td>
       <td>NaN</td>
     </tr>
   </tbody>
 </table>
-<p>2317 rows × 8 columns</p>
+<p>2317 rows × 9 columns</p>
 </div>
 </div>
 
@@ -24760,6 +24789,7 @@ pd.set_option('display.max_rows', 20)
       <th>EVER_CHAMPION</th>
       <th>EVER_INTERIM</th>
       <th>EVER_CHALLENGER</th>
+      <th>EITHER_CHAMP</th>
       <th>HEIGHT</th>
       <th>WEIGHT</th>
       <th>REACH</th>
@@ -24791,6 +24821,7 @@ pd.set_option('display.max_rows', 20)
       <th>0</th>
       <td>Asu Almabayev</td>
       <td>NaN</td>
+      <td>No</td>
       <td>No</td>
       <td>No</td>
       <td>No</td>
@@ -24826,6 +24857,7 @@ pd.set_option('display.max_rows', 20)
       <td>No</td>
       <td>No</td>
       <td>No</td>
+      <td>No</td>
       <td>66.0</td>
       <td>135.0</td>
       <td>68.0</td>
@@ -24855,6 +24887,7 @@ pd.set_option('display.max_rows', 20)
       <th>2</th>
       <td>Curtis Blaydes</td>
       <td>Orthodox</td>
+      <td>No</td>
       <td>No</td>
       <td>No</td>
       <td>No</td>
@@ -24890,6 +24923,7 @@ pd.set_option('display.max_rows', 20)
       <td>No</td>
       <td>No</td>
       <td>No</td>
+      <td>No</td>
       <td>75.0</td>
       <td>205.0</td>
       <td>79.0</td>
@@ -24919,6 +24953,7 @@ pd.set_option('display.max_rows', 20)
       <th>4</th>
       <td>Benoit Saint Denis</td>
       <td>Southpaw</td>
+      <td>No</td>
       <td>No</td>
       <td>No</td>
       <td>No</td>
@@ -24978,11 +25013,13 @@ pd.set_option('display.max_rows', 20)
       <td>...</td>
       <td>...</td>
       <td>...</td>
+      <td>...</td>
     </tr>
     <tr>
       <th>2312</th>
       <td>Joao Roque</td>
       <td>Orthodox</td>
+      <td>No</td>
       <td>No</td>
       <td>No</td>
       <td>No</td>
@@ -25018,6 +25055,7 @@ pd.set_option('display.max_rows', 20)
       <td>No</td>
       <td>No</td>
       <td>No</td>
+      <td>No</td>
       <td>70.0</td>
       <td>170.0</td>
       <td>70.0</td>
@@ -25047,6 +25085,7 @@ pd.set_option('display.max_rows', 20)
       <th>2314</th>
       <td>Adrian Serrano</td>
       <td>NaN</td>
+      <td>No</td>
       <td>No</td>
       <td>No</td>
       <td>No</td>
@@ -25082,6 +25121,7 @@ pd.set_option('display.max_rows', 20)
       <td>No</td>
       <td>No</td>
       <td>No</td>
+      <td>No</td>
       <td>74.0</td>
       <td>200.0</td>
       <td>74.0</td>
@@ -25114,6 +25154,7 @@ pd.set_option('display.max_rows', 20)
       <td>No</td>
       <td>No</td>
       <td>No</td>
+      <td>No</td>
       <td>69.0</td>
       <td>185.0</td>
       <td>69.0</td>
@@ -25141,7 +25182,7 @@ pd.set_option('display.max_rows', 20)
     </tr>
   </tbody>
 </table>
-<p>2317 rows × 29 columns</p>
+<p>2317 rows × 30 columns</p>
 </div>
 </div>
 
@@ -25208,6 +25249,7 @@ pd.set_option('display.max_rows', 20)
       <th>EVER_CHAMPION</th>
       <th>EVER_INTERIM</th>
       <th>EVER_CHALLENGER</th>
+      <th>EITHER_CHAMP</th>
       <th>KD</th>
       <th>TD</th>
       <th>SUB.ATT</th>
@@ -25286,6 +25328,7 @@ pd.set_option('display.max_rows', 20)
       <th>0</th>
       <td>Asu Almabayev</td>
       <td>NaN</td>
+      <td>No</td>
       <td>No</td>
       <td>No</td>
       <td>No</td>
@@ -25368,6 +25411,7 @@ pd.set_option('display.max_rows', 20)
       <td>No</td>
       <td>No</td>
       <td>No</td>
+      <td>No</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
@@ -25444,6 +25488,7 @@ pd.set_option('display.max_rows', 20)
       <th>2</th>
       <td>Curtis Blaydes</td>
       <td>Orthodox</td>
+      <td>No</td>
       <td>No</td>
       <td>No</td>
       <td>No</td>
@@ -25526,6 +25571,7 @@ pd.set_option('display.max_rows', 20)
       <td>No</td>
       <td>No</td>
       <td>No</td>
+      <td>No</td>
       <td>0.0</td>
       <td>25.0</td>
       <td>8.0</td>
@@ -25602,6 +25648,7 @@ pd.set_option('display.max_rows', 20)
       <th>4</th>
       <td>Benoit Saint Denis</td>
       <td>Southpaw</td>
+      <td>No</td>
       <td>No</td>
       <td>No</td>
       <td>No</td>
@@ -25755,11 +25802,13 @@ pd.set_option('display.max_rows', 20)
       <td>...</td>
       <td>...</td>
       <td>...</td>
+      <td>...</td>
     </tr>
     <tr>
       <th>2312</th>
       <td>Joao Roque</td>
       <td>Orthodox</td>
+      <td>No</td>
       <td>No</td>
       <td>No</td>
       <td>No</td>
@@ -25842,6 +25891,7 @@ pd.set_option('display.max_rows', 20)
       <td>No</td>
       <td>No</td>
       <td>No</td>
+      <td>No</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -25918,6 +25968,7 @@ pd.set_option('display.max_rows', 20)
       <th>2314</th>
       <td>Adrian Serrano</td>
       <td>NaN</td>
+      <td>No</td>
       <td>No</td>
       <td>No</td>
       <td>No</td>
@@ -26000,6 +26051,7 @@ pd.set_option('display.max_rows', 20)
       <td>No</td>
       <td>No</td>
       <td>No</td>
+      <td>No</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -26079,6 +26131,7 @@ pd.set_option('display.max_rows', 20)
       <td>No</td>
       <td>No</td>
       <td>No</td>
+      <td>No</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
@@ -26153,7 +26206,7 @@ pd.set_option('display.max_rows', 20)
     </tr>
   </tbody>
 </table>
-<p>2317 rows × 76 columns</p>
+<p>2317 rows × 77 columns</p>
 </div>
 </div>
 
@@ -26220,6 +26273,7 @@ pd.set_option('display.max_rows', 20)
       <th>EVER_CHAMPION</th>
       <th>EVER_INTERIM</th>
       <th>EVER_CHALLENGER</th>
+      <th>EITHER_CHAMP</th>
       <th>FA_FIGHTER</th>
       <th>FA_KD</th>
       <th>FA_TD</th>
@@ -26299,6 +26353,7 @@ pd.set_option('display.max_rows', 20)
       <th>0</th>
       <td>Asu Almabayev</td>
       <td>NaN</td>
+      <td>No</td>
       <td>No</td>
       <td>No</td>
       <td>No</td>
@@ -26382,6 +26437,7 @@ pd.set_option('display.max_rows', 20)
       <td>No</td>
       <td>No</td>
       <td>No</td>
+      <td>No</td>
       <td>CJ Vergara</td>
       <td>0.000000</td>
       <td>0.000000</td>
@@ -26459,6 +26515,7 @@ pd.set_option('display.max_rows', 20)
       <th>2</th>
       <td>Curtis Blaydes</td>
       <td>Orthodox</td>
+      <td>No</td>
       <td>No</td>
       <td>No</td>
       <td>No</td>
@@ -26542,6 +26599,7 @@ pd.set_option('display.max_rows', 20)
       <td>No</td>
       <td>No</td>
       <td>No</td>
+      <td>No</td>
       <td>Jailton Almeida</td>
       <td>0.000000</td>
       <td>2.028571</td>
@@ -26619,6 +26677,7 @@ pd.set_option('display.max_rows', 20)
       <th>4</th>
       <td>Benoit Saint Denis</td>
       <td>Southpaw</td>
+      <td>No</td>
       <td>No</td>
       <td>No</td>
       <td>No</td>
@@ -26774,11 +26833,13 @@ pd.set_option('display.max_rows', 20)
       <td>...</td>
       <td>...</td>
       <td>...</td>
+      <td>...</td>
     </tr>
     <tr>
       <th>2312</th>
       <td>Joao Roque</td>
       <td>Orthodox</td>
+      <td>No</td>
       <td>No</td>
       <td>No</td>
       <td>No</td>
@@ -26862,6 +26923,7 @@ pd.set_option('display.max_rows', 20)
       <td>No</td>
       <td>No</td>
       <td>No</td>
+      <td>No</td>
       <td>Marcelo Aguiar</td>
       <td>0.000000</td>
       <td>0.000000</td>
@@ -26939,6 +27001,7 @@ pd.set_option('display.max_rows', 20)
       <th>2314</th>
       <td>Adrian Serrano</td>
       <td>NaN</td>
+      <td>No</td>
       <td>No</td>
       <td>No</td>
       <td>No</td>
@@ -27022,6 +27085,7 @@ pd.set_option('display.max_rows', 20)
       <td>No</td>
       <td>No</td>
       <td>No</td>
+      <td>No</td>
       <td>David Dodd</td>
       <td>0.000000</td>
       <td>0.000000</td>
@@ -27102,6 +27166,7 @@ pd.set_option('display.max_rows', 20)
       <td>No</td>
       <td>No</td>
       <td>No</td>
+      <td>No</td>
       <td>Tyrone Roberts</td>
       <td>0.000000</td>
       <td>0.333333</td>
@@ -27177,7 +27242,7 @@ pd.set_option('display.max_rows', 20)
     </tr>
   </tbody>
 </table>
-<p>2317 rows × 77 columns</p>
+<p>2317 rows × 78 columns</p>
 </div>
 </div>
 
@@ -27244,6 +27309,7 @@ pd.set_option('display.max_rows', 20)
       <th>EVER_CHAMPION</th>
       <th>EVER_INTERIM</th>
       <th>EVER_CHALLENGER</th>
+      <th>EITHER_CHAMP</th>
       <th>RA_FIGHTER</th>
       <th>RA_KD</th>
       <th>RA_TD</th>
@@ -27323,6 +27389,7 @@ pd.set_option('display.max_rows', 20)
       <th>0</th>
       <td>Asu Almabayev</td>
       <td>NaN</td>
+      <td>No</td>
       <td>No</td>
       <td>No</td>
       <td>No</td>
@@ -27406,6 +27473,7 @@ pd.set_option('display.max_rows', 20)
       <td>No</td>
       <td>No</td>
       <td>No</td>
+      <td>No</td>
       <td>CJ Vergara</td>
       <td>0.000000</td>
       <td>0.000000</td>
@@ -27483,6 +27551,7 @@ pd.set_option('display.max_rows', 20)
       <th>2</th>
       <td>Curtis Blaydes</td>
       <td>Orthodox</td>
+      <td>No</td>
       <td>No</td>
       <td>No</td>
       <td>No</td>
@@ -27566,6 +27635,7 @@ pd.set_option('display.max_rows', 20)
       <td>No</td>
       <td>No</td>
       <td>No</td>
+      <td>No</td>
       <td>Jailton Almeida</td>
       <td>0.000000</td>
       <td>1.476190</td>
@@ -27643,6 +27713,7 @@ pd.set_option('display.max_rows', 20)
       <th>4</th>
       <td>Benoit Saint Denis</td>
       <td>Southpaw</td>
+      <td>No</td>
       <td>No</td>
       <td>No</td>
       <td>No</td>
@@ -27798,11 +27869,13 @@ pd.set_option('display.max_rows', 20)
       <td>...</td>
       <td>...</td>
       <td>...</td>
+      <td>...</td>
     </tr>
     <tr>
       <th>2312</th>
       <td>Joao Roque</td>
       <td>Orthodox</td>
+      <td>No</td>
       <td>No</td>
       <td>No</td>
       <td>No</td>
@@ -27886,6 +27959,7 @@ pd.set_option('display.max_rows', 20)
       <td>No</td>
       <td>No</td>
       <td>No</td>
+      <td>No</td>
       <td>Marcelo Aguiar</td>
       <td>0.000000</td>
       <td>0.000000</td>
@@ -27963,6 +28037,7 @@ pd.set_option('display.max_rows', 20)
       <th>2314</th>
       <td>Adrian Serrano</td>
       <td>NaN</td>
+      <td>No</td>
       <td>No</td>
       <td>No</td>
       <td>No</td>
@@ -28046,6 +28121,7 @@ pd.set_option('display.max_rows', 20)
       <td>No</td>
       <td>No</td>
       <td>No</td>
+      <td>No</td>
       <td>David Dodd</td>
       <td>0.000000</td>
       <td>0.000000</td>
@@ -28126,6 +28202,7 @@ pd.set_option('display.max_rows', 20)
       <td>No</td>
       <td>No</td>
       <td>No</td>
+      <td>No</td>
       <td>Tyrone Roberts</td>
       <td>0.000000</td>
       <td>0.333333</td>
@@ -28201,7 +28278,7 @@ pd.set_option('display.max_rows', 20)
     </tr>
   </tbody>
 </table>
-<p>2317 rows × 77 columns</p>
+<p>2317 rows × 78 columns</p>
 </div>
 </div>
 
@@ -28268,6 +28345,7 @@ pd.set_option('display.max_rows', 20)
       <th>EVER_CHAMPION</th>
       <th>EVER_INTERIM</th>
       <th>EVER_CHALLENGER</th>
+      <th>EITHER_CHAMP</th>
       <th>Total_Rounds</th>
       <th>Total_Fights</th>
       <th>Wins</th>
@@ -28315,6 +28393,7 @@ pd.set_option('display.max_rows', 20)
       <th>0</th>
       <td>Asu Almabayev</td>
       <td>NaN</td>
+      <td>No</td>
       <td>No</td>
       <td>No</td>
       <td>No</td>
@@ -28366,6 +28445,7 @@ pd.set_option('display.max_rows', 20)
       <td>No</td>
       <td>No</td>
       <td>No</td>
+      <td>No</td>
       <td>16</td>
       <td>6</td>
       <td>3</td>
@@ -28411,6 +28491,7 @@ pd.set_option('display.max_rows', 20)
       <th>2</th>
       <td>Curtis Blaydes</td>
       <td>Orthodox</td>
+      <td>No</td>
       <td>No</td>
       <td>No</td>
       <td>No</td>
@@ -28462,6 +28543,7 @@ pd.set_option('display.max_rows', 20)
       <td>No</td>
       <td>No</td>
       <td>No</td>
+      <td>No</td>
       <td>13</td>
       <td>7</td>
       <td>6</td>
@@ -28507,6 +28589,7 @@ pd.set_option('display.max_rows', 20)
       <th>4</th>
       <td>Benoit Saint Denis</td>
       <td>Southpaw</td>
+      <td>No</td>
       <td>No</td>
       <td>No</td>
       <td>No</td>
@@ -28598,11 +28681,13 @@ pd.set_option('display.max_rows', 20)
       <td>...</td>
       <td>...</td>
       <td>...</td>
+      <td>...</td>
     </tr>
     <tr>
       <th>2312</th>
       <td>Joao Roque</td>
       <td>Orthodox</td>
+      <td>No</td>
       <td>No</td>
       <td>No</td>
       <td>No</td>
@@ -28654,6 +28739,7 @@ pd.set_option('display.max_rows', 20)
       <td>No</td>
       <td>No</td>
       <td>No</td>
+      <td>No</td>
       <td>1</td>
       <td>1</td>
       <td>0</td>
@@ -28699,6 +28785,7 @@ pd.set_option('display.max_rows', 20)
       <th>2314</th>
       <td>Adrian Serrano</td>
       <td>NaN</td>
+      <td>No</td>
       <td>No</td>
       <td>No</td>
       <td>No</td>
@@ -28750,6 +28837,7 @@ pd.set_option('display.max_rows', 20)
       <td>No</td>
       <td>No</td>
       <td>No</td>
+      <td>No</td>
       <td>3</td>
       <td>1</td>
       <td>0</td>
@@ -28798,6 +28886,7 @@ pd.set_option('display.max_rows', 20)
       <td>No</td>
       <td>No</td>
       <td>No</td>
+      <td>No</td>
       <td>3</td>
       <td>1</td>
       <td>1</td>
@@ -28841,7 +28930,7 @@ pd.set_option('display.max_rows', 20)
     </tr>
   </tbody>
 </table>
-<p>2317 rows × 45 columns</p>
+<p>2317 rows × 46 columns</p>
 </div>
 </div>
 
@@ -29312,22 +29401,6 @@ women_strawweight
 <span class="c1"># Loop through each DataFrame and export to CSV</span>
 <span class="k">for</span> <span class="n">df</span><span class="p">,</span> <span class="n">file_name</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">dataframes</span><span class="p">,</span> <span class="n">file_names</span><span class="p">):</span>
     <span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
 
      </div>
