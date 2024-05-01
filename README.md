@@ -1,1 +1,1 @@
-# MMA_Thesis
+# MMA Thesis
